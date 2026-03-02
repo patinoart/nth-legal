@@ -1,0 +1,336 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>nth.legal | Legal Counsel for Founders</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            'lcd-pink': '#ff6b9d',
+            'lcd-pink-dark': '#e85a8a',
+            'lcd-bg': '#1a1a2e',
+            'lcd-panel': '#16213e',
+            'lcd-green': '#a8e6cf',
+            'lcd-text': '#edf2f4',
+          },
+          fontFamily: {
+            'mono': ['Space Mono', 'monospace'],
+            'sans': ['Inter', 'sans-serif'],
+          },
+        }
+      }
+    }
+  </script>
+  <style>
+    .lcd-display {
+      background: #16213e;
+      box-shadow: inset 0 2px 4px rgba(0,0,0,0.3);
+    }
+    .lcd-text {
+      /* no glow */
+    }
+    .calculator-btn {
+      background: linear-gradient(145deg, #2a2a4a, #1a1a2e);
+      box-shadow:
+        4px 4px 8px rgba(0,0,0,0.3),
+        -2px -2px 4px rgba(255,255,255,0.05);
+      transition: all 0.15s ease;
+    }
+    .calculator-btn:hover {
+      box-shadow:
+        2px 2px 4px rgba(0,0,0,0.3),
+        -1px -1px 2px rgba(255,255,255,0.05);
+      transform: translateY(1px);
+    }
+    .section-divider {
+      border-top: 1px dashed rgba(255, 107, 157, 0.3);
+    }
+  </style>
+</head>
+<body class="bg-lcd-bg text-lcd-text font-sans">
+
+  <!-- Navigation -->
+  <nav class="fixed top-0 w-full bg-lcd-bg/95 backdrop-blur-sm z-50 border-b border-lcd-pink/20">
+    <div class="max-w-5xl mx-auto px-4 sm:px-6 py-4 flex justify-between items-center">
+      <a href="#" class="font-mono text-xl font-bold text-lcd-pink lcd-text">nth.legal</a>
+      <!-- Mobile menu button -->
+      <button id="menu-toggle" class="md:hidden text-lcd-pink p-2 -mr-2" aria-label="Toggle menu">
+        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path id="menu-icon" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/>
+        </svg>
+      </button>
+      <!-- Desktop nav -->
+      <div class="hidden md:flex gap-8 font-mono text-sm">
+        <a href="#who" class="hover:text-lcd-pink transition-colors">who</a>
+        <a href="#what" class="hover:text-lcd-pink transition-colors">what</a>
+        <a href="#how" class="hover:text-lcd-pink transition-colors">how</a>
+        <a href="#contact" class="hover:text-lcd-pink transition-colors">contact</a>
+      </div>
+    </div>
+    <!-- Mobile nav -->
+    <div id="mobile-menu" class="hidden md:hidden border-t border-lcd-pink/20">
+      <div class="px-4 py-4 space-y-4 font-mono text-sm">
+        <a href="#who" class="block py-2 text-lcd-text hover:text-lcd-pink transition-colors">who</a>
+        <a href="#what" class="block py-2 text-lcd-text hover:text-lcd-pink transition-colors">what</a>
+        <a href="#how" class="block py-2 text-lcd-text hover:text-lcd-pink transition-colors">how</a>
+        <a href="#contact" class="block py-2 text-lcd-text hover:text-lcd-pink transition-colors">contact</a>
+      </div>
+    </div>
+  </nav>
+
+  <script>
+    const menuToggle = document.getElementById('menu-toggle');
+    const mobileMenu = document.getElementById('mobile-menu');
+    const menuIcon = document.getElementById('menu-icon');
+
+    menuToggle.addEventListener('click', () => {
+      mobileMenu.classList.toggle('hidden');
+      const isOpen = !mobileMenu.classList.contains('hidden');
+      menuIcon.setAttribute('d', isOpen ? 'M6 18L18 6M6 6l12 12' : 'M4 6h16M4 12h16M4 18h16');
+    });
+
+    // Close menu when clicking a link
+    mobileMenu.querySelectorAll('a').forEach(link => {
+      link.addEventListener('click', () => {
+        mobileMenu.classList.add('hidden');
+        menuIcon.setAttribute('d', 'M4 6h16M4 12h16M4 18h16');
+      });
+    });
+  </script>
+
+  <!-- Hero Section -->
+  <section class="min-h-screen flex items-center justify-center px-4 sm:px-6 pt-20 relative overflow-hidden">
+    <!-- Video Background (hero only) -->
+    <div class="absolute inset-0 z-0">
+      <video
+        autoplay
+        muted
+        loop
+        playsinline
+        class="absolute w-full h-full object-cover"
+      >
+        <!-- People-focused creative footage from Pexels -->
+        <source src="https://videos.pexels.com/video-files/3129671/3129671-uhd_2560_1440_30fps.mp4" type="video/mp4">
+      </video>
+      <!-- Dark overlay -->
+      <div class="absolute inset-0 bg-lcd-bg/80"></div>
+    </div>
+
+    <!-- Hero Content -->
+    <div class="max-w-4xl mx-auto text-center relative z-10">
+      <div class="lcd-display rounded-2xl p-6 sm:p-8 md:p-16 mb-6 sm:mb-8 border border-lcd-pink/20 backdrop-blur-sm">
+        <p class="font-mono text-lcd-pink text-xs md:text-sm mb-4 sm:mb-6 tracking-[0.2em] sm:tracking-[0.3em] uppercase">// Legal Counsel for Founders</p>
+        <h1 class="font-mono text-5xl sm:text-6xl md:text-8xl lg:text-9xl font-bold mb-6 sm:mb-8 lcd-text text-lcd-pink leading-none uppercase">
+          nth<span class="text-lcd-green">.</span>legal
+        </h1>
+        <p class="font-mono text-lg sm:text-xl md:text-2xl text-lcd-green mb-3 sm:mb-4">
+          n = your startup's potential
+        </p>
+        <p class="text-lcd-text/70 text-base sm:text-lg md:text-xl max-w-xl mx-auto leading-relaxed">
+          We shepherd founders from ground zero to Series A. Custom legal solutions, minus the suits.
+        </p>
+      </div>
+      <a href="#contact" class="calculator-btn inline-block font-mono px-6 sm:px-8 py-3 sm:py-4 rounded-lg text-lcd-pink border border-lcd-pink/30 hover:border-lcd-pink/60 text-sm sm:text-base backdrop-blur-sm">
+        start_conversation( )
+      </a>
+    </div>
+  </section>
+
+  <!-- Who Section -->
+  <section id="who" class="py-16 sm:py-24 px-4 sm:px-6 section-divider">
+    <div class="max-w-4xl mx-auto">
+      <div class="mb-10 sm:mb-16">
+        <span class="font-mono text-6xl sm:text-7xl md:text-8xl font-bold text-lcd-pink/20 block leading-none">01</span>
+        <h2 class="font-mono text-3xl sm:text-4xl md:text-6xl font-bold text-lcd-pink -mt-6 sm:-mt-8 md:-mt-12 lcd-text uppercase tracking-tight">
+          who_we_are
+        </h2>
+      </div>
+      <div class="grid md:grid-cols-2 gap-8 sm:gap-12">
+        <div>
+          <p class="text-xl sm:text-2xl md:text-3xl text-lcd-text font-light mb-4 sm:mb-6 leading-snug">
+            We don't look like lawyers. And that's the point.
+          </p>
+          <p class="text-lcd-text/60 mb-4 sm:mb-6 text-sm sm:text-base">
+            nth.legal was built for founders who'd rather talk product-market fit than billable hours. We speak your language—whether that's cap tables, SAFEs, or why your co-founder agreement actually matters.
+          </p>
+          <p class="text-lcd-text/60 text-sm sm:text-base">
+            Substance over form. Always.
+          </p>
+        </div>
+        <div class="lcd-display rounded-xl p-5 sm:p-6 border border-lcd-pink/20">
+          <p class="font-mono text-xs sm:text-sm text-lcd-pink mb-3 sm:mb-4">// FOUNDERS WE WORK WITH</p>
+          <ul class="space-y-2 sm:space-y-3 font-mono text-xs sm:text-sm">
+            <li class="flex items-center gap-3">
+              <span class="text-lcd-green">→</span>
+              <span>First-time founders</span>
+            </li>
+            <li class="flex items-center gap-3">
+              <span class="text-lcd-green">→</span>
+              <span>Small business owners</span>
+            </li>
+            <li class="flex items-center gap-3">
+              <span class="text-lcd-green">→</span>
+              <span>Underrepresented entrepreneurs</span>
+            </li>
+            <li class="flex items-center gap-3">
+              <span class="text-lcd-green">→</span>
+              <span>Women-owned businesses</span>
+            </li>
+            <li class="flex items-center gap-3">
+              <span class="text-lcd-green">→</span>
+              <span>Pre-seed to Series A startups</span>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- What Section -->
+  <section id="what" class="py-16 sm:py-24 px-4 sm:px-6 section-divider">
+    <div class="max-w-4xl mx-auto">
+      <div class="mb-10 sm:mb-16">
+        <span class="font-mono text-6xl sm:text-7xl md:text-8xl font-bold text-lcd-pink/20 block leading-none">02</span>
+        <h2 class="font-mono text-3xl sm:text-4xl md:text-6xl font-bold text-lcd-pink -mt-6 sm:-mt-8 md:-mt-12 lcd-text uppercase tracking-tight">
+          what_we_do
+        </h2>
+      </div>
+      <p class="text-lg sm:text-xl md:text-2xl text-lcd-text/80 mb-8 sm:mb-12 max-w-2xl leading-relaxed">
+        Every founder has their own set of issues. Some groundwork is formulaic—but the details that matter to <em class="text-lcd-green not-italic">your</em> business? Those are always custom.
+      </p>
+      <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 sm:gap-6">
+        <div class="calculator-btn rounded-xl p-5 sm:p-8 border border-lcd-pink/20 group hover:border-lcd-pink/40 transition-all">
+          <div class="font-mono text-lcd-green text-3xl sm:text-4xl md:text-5xl mb-3 sm:mb-4 group-hover:scale-110 transition-transform">{ }</div>
+          <h3 class="font-mono font-bold text-lg sm:text-xl md:text-2xl mb-2 sm:mb-3 uppercase">Formation</h3>
+          <p class="text-sm text-lcd-text/60 leading-relaxed">Entity setup, founder agreements, equity structures. The foundation your business stands on.</p>
+        </div>
+        <div class="calculator-btn rounded-xl p-5 sm:p-8 border border-lcd-pink/20 group hover:border-lcd-pink/40 transition-all">
+          <div class="font-mono text-lcd-green text-3xl sm:text-4xl md:text-5xl mb-3 sm:mb-4 group-hover:scale-110 transition-transform">[ ]</div>
+          <h3 class="font-mono font-bold text-lg sm:text-xl md:text-2xl mb-2 sm:mb-3 uppercase">Contracts</h3>
+          <p class="text-sm text-lcd-text/60 leading-relaxed">Customer agreements, vendor contracts, NDAs. Custom docs that actually protect you.</p>
+        </div>
+        <div class="calculator-btn rounded-xl p-5 sm:p-8 border border-lcd-pink/20 group hover:border-lcd-pink/40 transition-all">
+          <div class="font-mono text-lcd-green text-3xl sm:text-4xl md:text-5xl mb-3 sm:mb-4 group-hover:scale-110 transition-transform">( )</div>
+          <h3 class="font-mono font-bold text-lg sm:text-xl md:text-2xl mb-2 sm:mb-3 uppercase">Fundraising</h3>
+          <p class="text-sm text-lcd-text/60 leading-relaxed">SAFEs, convertible notes, priced rounds. From angel checks to Series A.</p>
+        </div>
+        <div class="calculator-btn rounded-xl p-5 sm:p-8 border border-lcd-pink/20 group hover:border-lcd-pink/40 transition-all">
+          <div class="font-mono text-lcd-green text-3xl sm:text-4xl md:text-5xl mb-3 sm:mb-4 group-hover:scale-110 transition-transform">++</div>
+          <h3 class="font-mono font-bold text-lg sm:text-xl md:text-2xl mb-2 sm:mb-3 uppercase">Employment</h3>
+          <p class="text-sm text-lcd-text/60 leading-relaxed">Hiring docs, IP assignments, contractor agreements. Build your team right.</p>
+        </div>
+        <div class="calculator-btn rounded-xl p-5 sm:p-8 border border-lcd-pink/20 group hover:border-lcd-pink/40 transition-all">
+          <div class="font-mono text-lcd-green text-3xl sm:text-4xl md:text-5xl mb-3 sm:mb-4 group-hover:scale-110 transition-transform">&lt;/&gt;</div>
+          <h3 class="font-mono font-bold text-lg sm:text-xl md:text-2xl mb-2 sm:mb-3 uppercase">Back Office</h3>
+          <p class="text-sm text-lcd-text/60 leading-relaxed">Systems, compliance, corporate housekeeping. The boring stuff that matters.</p>
+        </div>
+        <div class="calculator-btn rounded-xl p-5 sm:p-8 border border-lcd-pink/20 group hover:border-lcd-pink/40 transition-all">
+          <div class="font-mono text-lcd-green text-3xl sm:text-4xl md:text-5xl mb-3 sm:mb-4 group-hover:scale-110 transition-transform">?!</div>
+          <h3 class="font-mono font-bold text-lg sm:text-xl md:text-2xl mb-2 sm:mb-3 uppercase">Strategy</h3>
+          <p class="text-sm text-lcd-text/60 leading-relaxed">Legal counsel as a thought partner. We help you see around corners.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- How Section -->
+  <section id="how" class="py-16 sm:py-24 px-4 sm:px-6 section-divider">
+    <div class="max-w-4xl mx-auto">
+      <div class="mb-10 sm:mb-16">
+        <span class="font-mono text-6xl sm:text-7xl md:text-8xl font-bold text-lcd-pink/20 block leading-none">03</span>
+        <h2 class="font-mono text-3xl sm:text-4xl md:text-6xl font-bold text-lcd-pink -mt-6 sm:-mt-8 md:-mt-12 lcd-text uppercase tracking-tight">
+          how_it_works
+        </h2>
+      </div>
+      <div class="space-y-8 sm:space-y-12 md:space-y-16">
+        <div class="flex gap-4 sm:gap-6 md:gap-10 items-start">
+          <div class="font-mono text-lcd-pink text-3xl sm:text-4xl md:text-6xl font-bold w-12 sm:w-16 md:w-24 shrink-0 leading-none">01</div>
+          <div>
+            <h3 class="font-mono font-bold text-xl sm:text-2xl md:text-3xl mb-2 sm:mb-3 uppercase">Discovery Call</h3>
+            <p class="text-lcd-text/60 text-base sm:text-lg leading-relaxed">We learn about your business, your goals, and what's keeping you up at night. No jargon, no judgment.</p>
+          </div>
+        </div>
+        <div class="flex gap-4 sm:gap-6 md:gap-10 items-start">
+          <div class="font-mono text-lcd-pink text-3xl sm:text-4xl md:text-6xl font-bold w-12 sm:w-16 md:w-24 shrink-0 leading-none">02</div>
+          <div>
+            <h3 class="font-mono font-bold text-xl sm:text-2xl md:text-3xl mb-2 sm:mb-3 uppercase">Custom Roadmap</h3>
+            <p class="text-lcd-text/60 text-base sm:text-lg leading-relaxed">We map out what you actually need—not a one-size-fits-all package. Your issues are unique; your solutions should be too.</p>
+          </div>
+        </div>
+        <div class="flex gap-4 sm:gap-6 md:gap-10 items-start">
+          <div class="font-mono text-lcd-pink text-3xl sm:text-4xl md:text-6xl font-bold w-12 sm:w-16 md:w-24 shrink-0 leading-none">03</div>
+          <div>
+            <h3 class="font-mono font-bold text-xl sm:text-2xl md:text-3xl mb-2 sm:mb-3 uppercase">Build the Foundation</h3>
+            <p class="text-lcd-text/60 text-base sm:text-lg leading-relaxed">We execute—contracts, filings, systems. Everything documented, everything explained in plain English.</p>
+          </div>
+        </div>
+        <div class="flex gap-4 sm:gap-6 md:gap-10 items-start">
+          <div class="font-mono text-lcd-pink text-3xl sm:text-4xl md:text-6xl font-bold w-12 sm:w-16 md:w-24 shrink-0 leading-none">04</div>
+          <div>
+            <h3 class="font-mono font-bold text-xl sm:text-2xl md:text-3xl mb-2 sm:mb-3 uppercase">Ongoing Partnership</h3>
+            <p class="text-lcd-text/60 text-base sm:text-lg leading-relaxed">As you grow, we're here. New hires, new investors, new problems—we scale with you.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Contact Section -->
+  <section id="contact" class="py-16 sm:py-24 px-4 sm:px-6 section-divider">
+    <div class="max-w-2xl mx-auto text-center">
+      <div class="mb-8 sm:mb-12">
+        <span class="font-mono text-6xl sm:text-7xl md:text-8xl font-bold text-lcd-pink/20 block leading-none">04</span>
+        <h2 class="font-mono text-3xl sm:text-4xl md:text-6xl font-bold text-lcd-pink -mt-6 sm:-mt-8 md:-mt-12 lcd-text uppercase tracking-tight">
+          let's_talk
+        </h2>
+      </div>
+      <p class="text-lg sm:text-xl md:text-2xl text-lcd-text/80 mb-8 sm:mb-12 leading-relaxed">
+        Ready to build your foundation? Let's start with a conversation.
+      </p>
+      <div class="lcd-display rounded-2xl p-5 sm:p-8 border border-lcd-pink/20">
+        <form class="space-y-4 sm:space-y-6">
+          <div class="grid sm:grid-cols-2 gap-4 sm:gap-6">
+            <div class="text-left">
+              <label class="font-mono text-xs sm:text-sm text-lcd-pink mb-2 block">name</label>
+              <input type="text" class="w-full bg-lcd-bg border border-lcd-pink/30 rounded-lg px-4 py-3 text-lcd-text focus:outline-none focus:border-lcd-pink transition-colors text-base" placeholder="Ada Lovelace">
+            </div>
+            <div class="text-left">
+              <label class="font-mono text-xs sm:text-sm text-lcd-pink mb-2 block">email</label>
+              <input type="email" class="w-full bg-lcd-bg border border-lcd-pink/30 rounded-lg px-4 py-3 text-lcd-text focus:outline-none focus:border-lcd-pink transition-colors text-base" placeholder="ada@startup.io">
+            </div>
+          </div>
+          <div class="text-left">
+            <label class="font-mono text-xs sm:text-sm text-lcd-pink mb-2 block">company</label>
+            <input type="text" class="w-full bg-lcd-bg border border-lcd-pink/30 rounded-lg px-4 py-3 text-lcd-text focus:outline-none focus:border-lcd-pink transition-colors text-base" placeholder="Analytical Engine, Inc.">
+          </div>
+          <div class="text-left">
+            <label class="font-mono text-xs sm:text-sm text-lcd-pink mb-2 block">message</label>
+            <textarea rows="4" class="w-full bg-lcd-bg border border-lcd-pink/30 rounded-lg px-4 py-3 text-lcd-text focus:outline-none focus:border-lcd-pink transition-colors resize-none text-base" placeholder="Tell us about your business and how we can help..."></textarea>
+          </div>
+          <button type="submit" class="w-full calculator-btn font-mono px-6 sm:px-8 py-3 sm:py-4 rounded-lg text-lcd-pink border border-lcd-pink/30 hover:border-lcd-pink/60 hover:text-lcd-pink-dark text-sm sm:text-base">
+            send_message( )
+          </button>
+        </form>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="py-8 sm:py-12 px-4 sm:px-6 border-t border-lcd-pink/20">
+    <div class="max-w-4xl mx-auto flex flex-col sm:flex-row justify-between items-center gap-4 sm:gap-6">
+      <div class="font-mono text-lcd-pink font-bold">nth.legal</div>
+      <p class="text-xs sm:text-sm text-lcd-text/40 font-mono text-center sm:text-right">
+        © 2025 nth.legal // substance_over_form
+      </p>
+    </div>
+  </footer>
+
+</body>
+</html>
